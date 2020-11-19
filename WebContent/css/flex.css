@@ -1,0 +1,126 @@
+.container{
+    background: beige;
+    display: flex;
+    --flex-direction: column;
+    --flex-wrap: wrap-reverse;
+    /*  flex-flow : column wrap-reverse */
+    /* 
+        flex-direction: row-reverse; 
+                                        == > flex-flow : row-reverse nowrap;
+        flex-wrap : nowrap;                 
+    */
+    height : 500px;
+
+    /* 
+        메인축 정렬 : justify-content
+        cross축 정렬 : align-items
+
+        space-between - > 여백을 나눠가짐(단방향)
+        space-around  - > 여백을 나눠가짐(좌,우)
+    */
+    --justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+
+    /* 
+        align-items - > flex 라인이 있음 - > 층이 나누어짐
+        align-content  - > packing되서 라인을 무시. - > 층이 안나누어짐.
+    */
+    --align-content: center; 
+    flex-wrap: wrap;
+
+}
+
+.container>div{
+    --flex-grow: 1;
+
+    /* 
+        flex item에서 width를 주는건 최대값을 주는것 = max-width
+        min- 을 줘야함.
+        단 flex에선 의미론적으로 - > flex-basis 를 사용
+    */
+    --min-width : 50px;
+    --max-width : 150px;
+    
+    --flex-basis:200px;
+    --flex-shrink: 0;
+    background: rgb(189, 155, 189);
+    border:1px solid gray;
+    /* 
+         flex-grow: 1;
+         flex-shrink: 1;         == > flex : 1 1 100px;  == > flex : 100px;
+         flex-basis: 100px;               
+    */
+    height: 100px;
+
+    /* 
+        flex-basis가 width보다 우선 순위
+    */
+    flex: 0 0 100px; 
+    width: 200px;
+    margin-left : auto;
+}
+
+/* 
+    슈도 클래스
+    1. div : first-child - >  이용
+    2. div : :nth-child(1) - > 1부터 시작
+
+.container>div:first-child{
+    background: brown;
+} */
+
+
+.container>div:nth-child(3){
+    /* 
+        flex-grow : 숫자- > 남은 여백을 숫자 배수만큼 차지하게 함. 
+    */
+    --flex-grow : 1; 
+
+    --flex-shrink: 1;
+
+    
+    height : 10%;
+    background: pink;
+
+    /* 
+        특정 item의 정렬을 바꾸고 싶을 때
+        align-self
+    */
+    align-self: start;
+
+    flex-basis: 0%;
+}
+
+.container>div:nth-child(4){
+    /* 
+        flex-shrink : 숫자- > 공간이 없을 때 숫자 배수만큼 줄어들게 하기.
+        0이면 안줄음.
+    */
+    /* flex-shrink:3; */
+    background: blue;
+}
+
+.container>div:nth-child(5){
+    /* 끼워넣기, 0% -> 콘텐트 크기 */
+    
+    --flex-basis: 0%;
+
+    /* 순서 정하기 order : -1 */
+    --order:-1;
+}
+
+
+/* 
+    축약 표현
+
+    flex-grow : 0;
+    flex-shrink : 1;         == > flex : 0 1 100px;
+    flex-basis : 100px;
+
+    축약 값
+    flex : 0 0 auto             == > flex : none;
+    flex : 1 1 auto             == > flex : auto;
+    flex : 0 1 auto             == > flex : initial;
+    flex : 1 1 ?px             == > flex : ?px;
+*/

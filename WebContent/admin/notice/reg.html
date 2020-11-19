@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header id ="header">
+        <h1>헤더</h1>
+
+        <nav>
+            <h1 style="color: blue; font-size: 5px;">메인메뉴</h1>
+            <ul>
+                <li>학습가이드</li>
+                <li>강좌선택</li>
+                <li>Answeris</li>
+            </ul>
+        </nav>
+
+        <nav>
+            <h1>회원메뉴</h1>
+            <ul>
+                <li><a href = "../index.html">HOME</a></li>
+                <li><a href = "">로그인</a></li>
+                <li><a href = "">회원가입</a></li>
+            </ul>
+        </nav>
+
+        <nav>
+            <h1>바로가기 메뉴</h1>
+            <ul>
+                <li><a href = "">마이페이지</a></li>
+                <li><a href = "list.html">고객센터</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id = "aside">
+        <h1>고객센터</h1>
+    </aside>
+
+    <section>
+        <main id = "main">
+            <h1>공지사항 등록</h1>
+                <section>
+                <h1>경로</h1>
+                    <ol>
+                        <li>home</li>
+                        <li>고객센터</li>
+                        <li>공지사항</li>
+                    </ol>
+                </section>
+
+
+            <section>
+                <h1>공지사항 등록 폼</h1>
+                <form>
+                    <table border="1">
+                       <tr>
+                           <th>제목</th>
+                           <!-- autofocus - > 포커스 , placeholder - > 디폴트 값, name - > 자동완성 기능 + 키와 값 전달, 
+                            autocomplete - > 자동완성 여부 required -> 무조건 입력해야함  -->
+                           <td>
+                               <input name="title" autocomplete="off" autofocus placeholder="좋아하는 동물의 종류를 입력하세요." 
+                                    list="type" required>
+                               <datalist id="type">
+                                   <option value="Dog">
+                                   <option value="Cat">
+                                   <option value="Duck">
+                               </datalist>
+                            </td>     
+                       </tr>
+
+                       <tr>
+                            <th>나이</th>
+                            <td>
+                                <!-- type - > 타입이 아니면 입력이 안됨 디폴트가 text, min,max -> 최소, 최댓값 -->
+                                <input name="title" autocomplete="off" autofocus placeholder="0 ~ 200까지의 숫자를 입력하세요." 
+                                    list="type" required 
+                                    type="number"
+                                    min="0"
+                                    max="200">
+                                <datalist id="type">
+                                    <option value="Dog">
+                                    <option value="Cat">
+                                    <option value="Duck">
+                                </datalist>
+                            </td>     
+                         </tr>
+
+                         <tr>
+                            <th>전화번호 패턴</th>
+                            <td>
+                                <!-- pattern - > 정규식 패턴 -->
+                                <input name="title" autocomplete="off" autofocus placeholder="-를 구분해서 입력하세요." 
+                                    list="type" required 
+                                    pattern="^01[016789]-\d{3,4}-\d{4}$"
+                                   >
+                                <datalist id="type">
+                                    <option value="Dog">
+                                    <option value="Cat">
+                                    <option value="Duck">
+                                </datalist>
+                            </td>     
+                         </tr>
+
+                       <tr>
+                           <th>첨부파일</th>
+                           <td><input></td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+                               <textarea></textarea>
+                            </td>
+                       </tr>
+                    </table>
+                    <div>
+                        <input type="submit" value = "등록">
+                    </div>
+                </form>
+            </section>
+
+            <section>
+                <h1>페이지 정보</h1>
+                    <div>
+                        1 / 2 pages
+                    </div>
+            </section>
+
+            <section>
+                <h1>페이지 요청 목록</h1>
+                <div>
+                    이전
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                    다음
+                </div>
+            </section>
+     </main>
+    </section>
+
+<section>
+    <footer id = "footer">
+        <h1>푸터</h1>
+    </footer>
+</section>
+
+</body>
+</html>
