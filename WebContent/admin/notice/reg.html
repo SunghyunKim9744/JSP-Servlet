@@ -55,63 +55,43 @@
 
             <section>
                 <h1>공지사항 등록 폼</h1>
-                <form>
+                <form action="reg" method="get">
                     <table border="1">
                        <tr>
                            <th>제목</th>
-                           <!-- autofocus - > 포커스 , placeholder - > 디폴트 값, name - > 자동완성 기능 + 키와 값 전달, 
-                            autocomplete - > 자동완성 여부 required -> 무조건 입력해야함  -->
                            <td>
-                               <input name="title" autocomplete="off" autofocus placeholder="좋아하는 동물의 종류를 입력하세요." 
-                                    list="type" required>
-                               <datalist id="type">
-                                   <option value="Dog">
-                                   <option value="Cat">
-                                   <option value="Duck">
-                               </datalist>
+                               <input name="title" >
+                               <select name="animal">
+                                <!-- value 값을 안 넣을 경우 강아지, 고양이 등 이름으로 감. 
+                                	기본 선택자가 고양이 - > selected
+                                -->
+                               		<option value="1">강아지</option>
+                               		<option selected value="2">고양이</option>
+                               		<option value="3">햄스터</option>
+                               		<option value="4">금붕어</option>
+                               </select>
+                               
+                               <!-- name을 동일하게 해야 한 가지만 선택가능. 
+                               		전달할 때 값이 전돨되므로 value값을 줘야함. 안주면 체크됬는지 안됬는지만 감 -> on
+                               -->
+                               <input type="radio" name="size" value="1">대형견
+                               <input type="radio" name="size" value="2">중형견
+                               <input type="radio" name="size" value="3">소형견
+                               
+                               <input type="checkbox" name="food" value="1">사료
+                               <input type="checkbox" name="food" value="2">야채
+                               <input type="checkbox" name="food" value="3">고기
+                               <input type="checkbox" name="food" value="4">생선
                             </td>     
                        </tr>
-
-                       <tr>
-                            <th>나이</th>
-                            <td>
-                                <!-- type - > 타입이 아니면 입력이 안됨 디폴트가 text, min,max -> 최소, 최댓값 -->
-                                <input name="title" autocomplete="off" autofocus placeholder="0 ~ 200까지의 숫자를 입력하세요." 
-                                    list="type" required 
-                                    type="number"
-                                    min="0"
-                                    max="200">
-                                <datalist id="type">
-                                    <option value="Dog">
-                                    <option value="Cat">
-                                    <option value="Duck">
-                                </datalist>
-                            </td>     
-                         </tr>
-
-                         <tr>
-                            <th>전화번호 패턴</th>
-                            <td>
-                                <!-- pattern - > 정규식 패턴 -->
-                                <input name="title" autocomplete="off" autofocus placeholder="-를 구분해서 입력하세요." 
-                                    list="type" required 
-                                    pattern="^01[016789]-\d{3,4}-\d{4}$"
-                                   >
-                                <datalist id="type">
-                                    <option value="Dog">
-                                    <option value="Cat">
-                                    <option value="Duck">
-                                </datalist>
-                            </td>     
-                         </tr>
-
+                       
                        <tr>
                            <th>첨부파일</th>
-                           <td><input></td>
+                           <td><input name="file"></td>
                        </tr>
                        <tr>
                            <td colspan="2">
-                               <textarea></textarea>
+                               <textarea name="content"></textarea>
                             </td>
                        </tr>
                     </table>
