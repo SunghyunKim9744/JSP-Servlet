@@ -13,18 +13,17 @@ import com.newlecture.web.entity.Member;
 public class MemberService {
 
 
-
-	
-
 	public List<Member> getList() {
-		String url = "jdbc:oracle:thin:hi.namoolab.com:1521/xepdb1";
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
 		String sql = "SELECT * FROM MEMBER WHERE PWD='111'";
 
 		List<Member> list = new ArrayList<>();
 
 		try
 		{
-			// Driver load & DB 연결
+			// Driver load
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// DB 연결
 			Connection con = DriverManager.getConnection(url, "NEWLEC", "11111");
 
 			// DB 실행
@@ -58,6 +57,9 @@ public class MemberService {
 		}catch(
 		SQLException e)
 		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

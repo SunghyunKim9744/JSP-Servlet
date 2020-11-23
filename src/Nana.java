@@ -1,4 +1,5 @@
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.newlecture.web.entity.Member;
@@ -7,6 +8,7 @@ import com.newlecture.web.service.MemberService;
 import java.io.*;
 import java.util.List;
 
+@WebServlet("/na")
 public class Nana extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 

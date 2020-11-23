@@ -20,16 +20,16 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
   version="4.0"
-  metadata-complete="true">
+  metadata-complete="false">
 
-  <servlet>
+<!--   <servlet>
     <servlet-name>n</servlet-name>
     <servlet-class>Nana</servlet-class>    
   </servlet>
   <servlet-mapping>
     <servlet-name>n</servlet-name>
     <url-pattern>/hoho</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
   
 
   <display-name>Welcome to Tomcat</display-name>

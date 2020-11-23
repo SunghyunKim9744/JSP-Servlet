@@ -21,7 +21,7 @@ public class Member {
 
 	public Member(int id, String nicname, String pwd, String name, String gender, String birthday, String phone,
 			String email, Date regdate) {
-		super();
+		
 		this.id = id;
 		this.nicname = nicname;
 		this.pwd = pwd;
