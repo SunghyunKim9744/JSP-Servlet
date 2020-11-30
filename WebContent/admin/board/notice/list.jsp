@@ -192,12 +192,12 @@
 					<% for(Notice n : list){%>
 							<tr>
 								<td><%= n.getId() %></td>
-								<td class="title indent text-align-left"><a href="detail.jsp"><%= n.getTitle() %></a></td>
+								<td class="title indent text-align-left"><a href="detail?id=<%= n.getId() %>"><%= n.getTitle() %></a></td>
 								<td><%= n.getWriterId() %></td>
 								<td>
 									<%= n.getRegdate() %>
 								</td>
-								<td>146</td>
+								<td><%= n.getHit() %></td>
 								<td><input type="checkbox" name="open"></td>
 								<td><input type="checkbox" name="del"></td>
 							</tr>

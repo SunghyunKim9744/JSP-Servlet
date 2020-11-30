@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/notice/list")
+@WebServlet("/admin/board/notice/list")
 public class ListController extends HttpServlet {
 
 	@Override
