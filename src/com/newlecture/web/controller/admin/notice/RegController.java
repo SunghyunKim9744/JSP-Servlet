@@ -1,7 +1,6 @@
 package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,42 +8,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/notice/reg")
+import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
+
+@WebServlet("/admin/board/notice/reg")
 public class RegController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-//		입력받은 것은 필터에서하기.
-//		읽어들일 때 UTF-8로 읽기 
-//		request.setCharacterEncoding("UTF-8");
-
-//		출력시 UTF-8로 보내기.		
-		response.setCharacterEncoding("UTF-8");
-
-//		브라우저에게 UTF-8로 읽으라고 보내기.
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = response.getWriter();
-		String title = request.getParameter("title");
-		
-//		reg?cnt=3 
-//		reg?cnt=  -- > "" 빈 문자열
-//		reg?      -- > null
-//		reg       -- > null
-		
-		if(title != null && !title.equals(""))
-			out.printf("title is %s\n",title);
-		
 			
-//		String[] titles = request.getParameterValues("title");
-		String[] food = request.getParameterValues("food");
-		String file = request.getParameter("file");
+		//		get요청
+		if(request.getMethod().equals("GET"))
+			request.getRequestDispatcher("reg.jsp").forward(request, response);
 		
-//		for(int i=0; i<titles.length; i++)
-//			System.out.printf("title is %s\n",titles[i]);
-		for(int i=0; i<food.length; i++)
-			out.printf("음식 is %s\n",food[i]);
-//		System.out.printf("title is %s\n, file is %s\n",title,file);
+		//		post 요청
+		else if(request.getMethod().equals("POST")) {
+	//		1. 사용자가 입력한 값 받기
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			Notice notice = new Notice(title,content);
+	//		2. 데이터 베이스에 입력
+			NoticeService service = new NoticeService();
+			service.insert(notice);
+	//		3. 목록페이지로 이동
+	//      Servlet - > Servlet 이동 하는 방법
+	//      1. forward - > 현재 진행형, 남아 있는 작업이 있을 때
+	//      2. redirect - > 모든 작업이 끝나고 페이지 전환, 모든 post처리 부분
+			response.sendRedirect("list");
+			
+		}
+		
+
 	}
 }

@@ -25,6 +25,11 @@ public class Notice {
 		this.files = files;
 	}
 
+	public Notice(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+
 	public int getId() {
 		return id;
 	}
