@@ -12,7 +12,7 @@ public class Notice {
 	private String files;
 	
 	public Notice() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Notice(int id, String title, String writerId, String content, Date regdate, int hit, String files) {

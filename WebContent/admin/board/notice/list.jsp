@@ -4,16 +4,10 @@
 3. <%! %> --> 멤버속성, 멤버 메소드
 4. <%@ %> -- > 초기 설정을 위한 코드블록(코드삽입전에 되어야함.) --> 코드 지시자 --%>
 
-<%@page import="com.newlecture.web.entity.Notice"%>
-<%@page import="com.newlecture.web.service.NoticeService"%>
-<%@page import="java.util.List" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%
-	NoticeService service = new NoticeService();
-    List<Notice> list = service.getList();
-%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- <%! public void add(int i){
 	int result = 3;
@@ -25,20 +19,19 @@
 <html>
 
 <head>
-	<title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
-	<meta charset="UTF-8">
-	<title>공지사항목록</title>
+<title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
+<meta charset="UTF-8">
+<title>공지사항목록</title>
 
-	<link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
-	<style>
-		#visual .content-container {
-			height: inherit;
-			display: flex;
-			align-items: center;
-
-			background: url("/images/mypage/visual.png") no-repeat center;
-		}
-	</style>
+<link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
+<style>
+#visual .content-container {
+	height: inherit;
+	display: flex;
+	align-items: center;
+	background: url("/images/mypage/visual.png") no-repeat center;
+}
+</style>
 </head>
 
 <body>
@@ -49,8 +42,7 @@
 			<!-- ---------------------------<header>--------------------------------------- -->
 
 			<h1 id="logo">
-				<a href="/index.html">
-					<img src="/images/logo.png" alt="뉴렉처 온라인" />
+				<a href="/index.html"> <img src="/images/logo.png" alt="뉴렉처 온라인" />
 
 				</a>
 			</h1>
@@ -75,9 +67,8 @@
 						<form action="/course">
 							<fieldset>
 								<legend>과정검색필드</legend>
-								<label>과정검색</label>
-								<input type="text" name="q" value="" />
-								<input type="submit" value="검색" />
+								<label>과정검색</label> <input type="text" name="q" value="" /> <input
+									type="submit" value="검색" />
 							</fieldset>
 						</form>
 					</section>
@@ -94,8 +85,10 @@
 					<nav id="member-menu" class="linear-layout">
 						<h1 class="hidden">고객메뉴</h1>
 						<ul class="linear-layout">
-							<li><a href="/member/home"><img src="/images/txt-mypage.png" alt="마이페이지" /></a></li>
-							<li><a href="/notice/list.html"><img src="/images/txt-customer.png" alt="고객센터" /></a></li>
+							<li><a href="/member/home"><img
+									src="/images/txt-mypage.png" alt="마이페이지" /></a></li>
+							<li><a href="/notice/list.html"><img
+									src="/images/txt-customer.png" alt="고객센터" /></a></li>
 						</ul>
 					</nav>
 
@@ -161,14 +154,12 @@
 					<form class="table-form">
 						<fieldset>
 							<legend class="hidden">공지사항 검색 필드</legend>
-							<label class="hidden">검색분류</label>
-							<select name="f">
+							<label class="hidden">검색분류</label> <select name="f">
 								<option value="title">제목</option>
 								<option value="writerId">작성자</option>
-							</select>
-							<label class="hidden">검색어</label>
-							<input type="text" name="q" value="" />
-							<input class="btn btn-search" type="submit" value="검색" />
+							</select> <label class="hidden">검색어</label> <input type="text" name="q"
+								value="" /> <input class="btn btn-search" type="submit"
+								value="검색" />
 						</fieldset>
 					</form>
 				</div>
@@ -188,37 +179,40 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%-- items = ${list} --> 리퀘스트에서 뽑아옴
+						var = "n" -- > 페이지컨텍스트에 담음 --%>
+							<c:forEach var="n" items="${list}">
+								<tr>
+									<td>${n.id}</td>
+									<td class="title indent text-align-left"><a
+										href="detail?id=${n.id}">${n.title}</a></td>
+									<td>${n.writerId}</td>
+									<td>${n.regdate}</td>
+									<td>${n.hit}</td>
+									<td><input type="checkbox" name="open"></td>
+									<td><input type="checkbox" name="del"></td>
+								</tr>
+							</c:forEach>
 
-					<% for(Notice n : list){%>
-							<tr>
-								<td><%= n.getId() %></td>
-								<td class="title indent text-align-left"><a href="detail?id=<%= n.getId() %>"><%= n.getTitle() %></a></td>
-								<td><%= n.getWriterId() %></td>
-								<td>
-									<%= n.getRegdate() %>
-								</td>
-								<td><%= n.getHit() %></td>
-								<td><input type="checkbox" name="open"></td>
-								<td><input type="checkbox" name="del"></td>
-							</tr>
-					<% } %>
-							
+
 						</tbody>
 					</table>
 				</div>
 
 				<div class="indexer margin-top align-right">
 					<h3 class="hidden">현재 페이지</h3>
-					<div><span class="text-orange text-strong">1</span> / 1 pages</div>
+					<div>
+						<span class="text-orange text-strong">1</span> / 1 pages
+					</div>
 				</div>
 
 				<div class="text-align-right margin-top">
 					<input type="submit" class="btn-text btn-default" value="일괄공개">
 					<input type="submit" class="btn-text btn-default" value="일괄삭제">
-					<a class="btn-text btn-default" href="reg.html">글쓰기</a>				
+					<a class="btn-text btn-default" href="reg.html">글쓰기</a>
 				</div>
 
-				<div class="margin-top align-center pager">
+				<div class=>
 
 					<div>
 
@@ -227,7 +221,12 @@
 
 					</div>
 					<ul class="-list- center">
-						<li><a class="-text- orange bold" href="?p=1&t=&q=">1</a></li>
+					<!-- step - > n칸씩 뛰어넘기 
+						varStatus - > 현재 상태를 나타냄
+					-->
+						<c:forEach var="i" begin="0" end="5" step="2" varStatus="st">
+							<li><a class="-text- orange bold" href="?p=1&t=&q=">stCount : ${st.count} / stIndex : ${st.index} / stFirst : ${st.first} / stCurrent : ${st.current}</a></li><br>
+						</c:forEach>
 
 					</ul>
 					<div>
@@ -250,12 +249,14 @@
 
 	<footer id="footer">
 		<div class="content-container">
-			<h2 id="footer-logo"><img src="/images/logo-footer.png" alt="회사정보"></h2>
+			<h2 id="footer-logo">
+				<img src="/images/logo-footer.png" alt="회사정보">
+			</h2>
 
 			<div id="company-info">
 				<dl>
 					<dt>주소:</dt>
-					<dd>서울특별시 </dd>
+					<dd>서울특별시</dd>
 					<dt>관리자메일:</dt>
 					<dd>admin@newlecture.com</dd>
 				</dl>
@@ -273,8 +274,9 @@
 					<dt>전화번호:</dt>
 					<dd>111-1111-1111</dd>
 				</dl>
-				<div id="copyright" class="margin-top">Copyright ⓒ newlecture.com 2012-2014 All Right Reserved.
-					Contact admin@newlecture.com for more information</div>
+				<div id="copyright" class="margin-top">Copyright ⓒ
+					newlecture.com 2012-2014 All Right Reserved. Contact
+					admin@newlecture.com for more information</div>
 			</div>
 		</div>
 	</footer>
