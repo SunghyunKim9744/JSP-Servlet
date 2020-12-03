@@ -149,4 +149,63 @@ public class NoticeService {
 		return result;
 
 	}
+
+	public int update(Notice notice) {
+		int result = 0;
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=? WHERE ID=?";
+
+		try {
+		
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "11111");
+			
+//			? 값을 꽂아 놓을 수 있게 함 - > PreparedStatement
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setInt(3, notice.getId());
+			
+			result = st.executeUpdate();
+
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+		
+	}
+	
+	public int delete(int id) {
+		int result = 0;
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "DELETE FROM NOTICE WHERE ID=?";
+
+		try {
+		
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "NEWLEC", "11111");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			
+			result = st.executeUpdate();
+
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

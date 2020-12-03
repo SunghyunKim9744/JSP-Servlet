@@ -137,49 +137,76 @@
 
 
             <main>
-                <h2 class="main title">공지사항 등록</h2>
+                <h2 class="main title">공지사항</h2>
 
                 <div class="breadcrumb">
                     <h3 class="hidden">breadlet</h3>
                     <ul>
                         <li>home</li>
-                        <li>게시글 관리</li>
+                        <li>고객센터</li>
                         <li>공지사항</li>
                     </ul>
                 </div>
 
-                <form action="reg" method="post">
-                    <div class="margin-top first">
-                        <h3 class="hidden">공지사항 입력</h3>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>제목</th>
-                                    <td class="text-align-left text-indent text-strong text-orange" colspan="3">
-                                        <input type="text" name="title" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>첨부파일</th>
-                                    <td colspan="3" class="text-align-left text-indent"><input type="file"
-                                            name="file" /> </td>
-                                </tr>
-                                <tr class="content">
-                                    <td colspan="4"><textarea class="content" name="content"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-align-right"><input class="vertical-align" type="checkbox" id="open" name="open" value="true"><label for="open" class="margin-left">바로공개</label> </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="margin-top text-align-center">
-                        <input class="btn-text btn-default" type="submit" value="등록" />
-                        <a class="btn-text btn-cancel" href="list.html">취소</a>
-                    </div>
-                </form>
+			<form action="edit" method="post">
+                <div class="margin-top first">
+                    <h3 class="hidden">공지사항 내용</h3>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>제목</th>
+                                <td class="text-align-left text-indent text-strong text-orange" colspan="3">
+                                	<input type="text" name="title" value="${n.title}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>작성일</th>
+                                <td class="text-align-left text-indent" colspan="3">2019-08-18 </td>
+                            </tr>
+                            <tr>
+                                <th>작성자</th>
+                                <td>newlec</td>
+                                <th>조회수</th>
+                                <td>148</td>
+                            </tr>
+                            <tr>
+                                <th>첨부파일</th>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr class="content">
+                                <td colspan="4">
+                                    <textarea name="content">${n.content}</textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div class="margin-top text-align-center">
+                	<input type="hidden" name="id" value="${n.id}">
+                    <a class="btn-text btn-cancel" href="detail?id=${n.id}">취소</a>
+                    <input type="submit" class="btn-text btn-default" value="저장">
+            
+                </div>
+               </form>
+
+                <div class="margin-top">
+                    <table class="table border-top-default">
+                        <tbody>
+                            <tr>
+                                <th>다음글</th>
+                                <td colspan="3" class="text-align-left text-indent">다음글이 없습니다.</td>
+                            </tr>
+                            <tr>
+                                <th>이전글</th>
+                                <td colspan="3" class="text-align-left text-indent"><a class="text-blue text-strong"
+                                        href="">스프링 DI 예제 코드</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </main>
+
         </div>
     </div>
 

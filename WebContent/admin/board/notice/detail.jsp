@@ -200,8 +200,8 @@
 
                 <div class="margin-top text-align-center">
                     <a class="btn-text btn-cancel" href="list">목록</a>
-                    <a class="btn-text btn-default" href="edit.html">수정</a>
-                    <a class="btn-text btn-default" href="del.html">삭제</a>
+                    <a class="btn-text btn-default" href="edit?id=${n.id}">수정</a>
+                    <a class="btn-text btn-default" href="del?id=${n.id}">삭제</a>
                 </div>
 
                 <div class="margin-top">
