@@ -64,4 +64,10 @@ public class NoticeService {
 	
 		return noticeDao.delete(id);
 	}
+
+
+	public int getLastId() {
+		Notice n = noticeDao.getLast();
+		return n.getId();
+	}
 }

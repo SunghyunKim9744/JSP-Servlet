@@ -21,7 +21,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = DBContext.URL;
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT) VALUES(?,?)";
+		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,WRITER_ID) VALUES(?,?,?)";
 
 		try {
 
@@ -32,6 +32,7 @@ public class JdbcNoticeDao implements NoticeDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
 
 //			결과가 있을 때만 필요(select 일경우만)
 //			ResultSet rs = st.executeQuery(sql);
@@ -279,6 +280,54 @@ public class JdbcNoticeDao implements NoticeDao {
 	public List<Notice> getList(int startIndex, int endIndex, String field, String query) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Notice getLast() {
+		Notice n = null;
+
+		String url = DBContext.URL;
+		String sql = "SELECT * FROM NOTICE WHERE ID = (SELECT MAX(ID) FROM NOTICE)";
+
+		try {
+			// Driver load
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// DB 연결
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+
+			// DB 실행
+			Statement st = con.createStatement();
+
+			// DB 결과
+			ResultSet rs = st.executeQuery(sql);
+
+//			String[] nicnames= new String[2];
+
+			if (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String title = rs.getNString("TITLE");
+				String writerId = rs.getNString("WRITER_ID");
+				String content = rs.getNString("CONTENT");
+				Date regdate = rs.getDate("REGDATE");
+				int hit = rs.getInt("HIT");
+				String files = rs.getNString("FILES");
+
+				n = new Notice(id, title, writerId, content, regdate, hit, files);
+
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return n;
 	}
 
 }

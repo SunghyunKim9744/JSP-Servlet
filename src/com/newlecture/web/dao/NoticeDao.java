@@ -18,5 +18,6 @@ public interface NoticeDao {
 	List<NoticeView> getViewList();
 	List<NoticeView> getViewList(int startIndex, int endIndex);
 	List<NoticeView> getViewList(int startIndex, int endIndex, String field, String query);
+	Notice getLast();
 
 }
